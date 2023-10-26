@@ -15,6 +15,7 @@ jobs:
       - name: Run tests # This will run the tests
         run: npm test
   deploy:
+    needs: test # This will make sure that the test job finishes successfully before the deploy job. Can wrap in [ test, two ] to depend on multiple jobs.
     runs-on: ubuntu-latest
     steps:
       - name: Get code # This will get the code from the repo onto the runner.
