@@ -2,7 +2,7 @@ name: Test Project
 on: push
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubunut-latest
     steps:
       - name: Get code # This will get the code from the repo onto the runner.
         uses: actions/checkout@v3
