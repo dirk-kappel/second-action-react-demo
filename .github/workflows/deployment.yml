@@ -1,0 +1,31 @@
+name: Deploy Project
+on: push
+jobs:
+  test:
+    runs-on: ubunut-latest
+    steps:
+      - name: Get code # This will get the code from the repo onto the runner.
+        uses: actions/checkout@v3
+      - name: Install NodeJS # Not necessary since Node.js is already installed. However, this will install version 18 of Node.js which is not pre-installed.
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies # This will install the dependencies
+        run: npm ci # npm ci is faster than npm install
+      - name: Run tests # This will run the tests
+        run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code # This will get the code from the repo onto the runner.
+        uses: actions/checkout@v3
+      - name: Install NodeJS # Not necessary since Node.js is already installed. However, this will install version 18 of Node.js which is not pre-installed.
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies # This will install the dependencies
+        run: npm ci # npm ci is faster than npm install
+      - name: Build project
+        run: npm run build
+      - name: Deploy
+        run: echo "Deploying..."
